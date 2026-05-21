@@ -23,10 +23,14 @@ public class DinosaurEscapeEvent implements ParkEvent {
     }
 
     @Override
-    public String getType() { return "DINOSAUR_ESCAPE"; }
+    public String getType() {
+        return "DINOSAUR_ESCAPE";
+    }
 
     @Override
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
     @Override
     public void execute() {

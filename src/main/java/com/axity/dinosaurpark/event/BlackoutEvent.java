@@ -15,12 +15,18 @@ public class BlackoutEvent implements ParkEvent {
     }
 
     @Override
-    public String getType() { return "BLACKOUT"; }
+    public String getType() {
+        return "BLACKOUT";
+    }
 
     @Override
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public double getCost() { return cost; }
+    public double getCost() {
+        return cost;
+    }
 
     @Override
     public void execute() {
