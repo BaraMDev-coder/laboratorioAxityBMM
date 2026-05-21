@@ -16,6 +16,7 @@ public class csvWriter {
         this.outputDirectory = ParkConfig.getInstance()
                 .getString("output.directory", "output");
         createDirectoryIfNotExists();
+        initFiles();
     }
 
     private void createDirectoryIfNotExists() {
@@ -26,16 +27,31 @@ public class csvWriter {
         }
     }
 
-    public void writeIncome(String category, double amount, String detail) {
-        writeToFile("ingresos.csv", category + "," + amount + "," + detail);
+    private void initFiles() {
+        writeHeader("ingresos.csv", "id,type,amount,touristId,zone,timestamp");
+        writeHeader("gastos.csv", "id,type,amount,description,timestamp");
+        writeHeader("eventos.csv", "step,eventName,description,affectedEntities,timestamp");
     }
 
-    public void writeExpense(String category, double amount, String detail) {
-        writeToFile("gastos.csv", category + "," + amount + "," + detail);
+    private void writeHeader(String fileName, String header) {
+        String filePath = outputDirectory + "/" + fileName;
+        try (PrintWriter writer = new PrintWriter(new FileWriter(filePath, false))) {
+            writer.println(header);
+        } catch (IOException e) {
+            System.err.println("Error al escribir header en " + fileName + ": " + e.getMessage());
+        }
     }
 
-    public void writeEvent(String type, String description) {
-        writeToFile("eventos.csv", type + "," + description);
+    public void appendRevenue(RevenueRecord r) {
+        writeToFile("ingresos.csv", r.toCsvLine());
+    }
+
+    public void appendExpense(ExpenseRecord e) {
+        writeToFile("gastos.csv", e.toCsvLine());
+    }
+
+    public void appendEvent(EventRecord ev) {
+        writeToFile("eventos.csv", ev.toCsvLine());
     }
 
     private void writeToFile(String fileName, String content) {
