@@ -22,7 +22,7 @@ public class SimulationEngine {
 
         // Configuración
         totalSteps = config.getInt("simulation.totalSteps", 100);
-        batchSize  = config.getInt("simulation.batchSize", 5);
+        batchSize  = config.getInt("simulation.arrivalBatchSize", 5);
         long seed = (long) config.getInt("simulation.seed", 42);
 
         Random rng = new Random(seed);
