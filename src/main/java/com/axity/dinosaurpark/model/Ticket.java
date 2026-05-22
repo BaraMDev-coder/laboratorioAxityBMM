@@ -22,6 +22,10 @@ public class Ticket {
         return id;
     }
 
+    public int getTouristId() {
+        return touristId;
+    }
+
     public double getPrice() {
         return price;
     }
