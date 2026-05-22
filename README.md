@@ -171,7 +171,8 @@ El parque está dividido en distintas áreas:
 <p align="center">
   <img src="images/Diagrama UML de secuencia.png" width="900">
 </p>
----
+
+
 ## 1. Singleton — ParkConfig
 
 La clase `ParkConfig` implementa el patrón Singleton para garantizar una única instancia de configuración durante toda la ejecución del sistema.
