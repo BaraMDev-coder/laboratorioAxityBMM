@@ -29,18 +29,44 @@ Ejemplo de configuración:
 simulation.seed=42
 simulation.totalSteps=100
 simulation.arrivalBatchSize=5
+
 tourists=50
+
 dinosaurs.carnivores=5
 dinosaurs.herbivores=15
+
+workers.guards=3
+workers.technicians=2
+workers.dailySalary=150.0
+
+arrival.maxCapacity=30
+arrival.ticketPrice=25.0
+
+hub.souvenirPrice=15.0
+hub.souvenirPurchaseProbability=0.4
+
+bathroom.maxCapacity=10
+bathroom.useDurationSteps=3
+
+powerplant.initialEnergy=100.0
+powerplant.failureProbability=0.05
+
+output.directory=output
+
 ```
 
 Parámetros configurables:
 - Cantidad de turistas
 - Dinosaurios carnívoros y herbívoros
-- Semilla de simulación
-- Número total de pasos
-- Tamaño de lotes de llegada
+- Personal del parque
+- Configuración de energía
+- Capacidad de zonas
+- Precios y probabilidades
+- Persistencia de archivos
+- Semilla y duración de simulación
 
+```
+```
 ---
 
 # ▶️ Ejecución del proyecto
@@ -66,7 +92,7 @@ El proyecto incluye pruebas unitarias desarrolladas con JUnit 5.
 ## Ejecutar pruebas
 
 ```bash
-mvn clean test
+mvn  test
 ```
 
 ## Generar reporte de cobertura
@@ -93,14 +119,14 @@ El sistema simula el funcionamiento de un parque turístico de dinosaurios.
 
 Durante la simulación:
 
-- Los turistas llegan en lotes y compran boletos en la zona de arribo.
+- Los turistas llegan  y compran boletos en la zona de arribo.
 - Los visitantes recorren distintas zonas del parque.
 - Se generan ingresos por venta de boletos, souvenirs y servicios.
 - La planta de energía consume recursos y puede presentar fallas.
 - Ocurren eventos aleatorios como:
     - Escape de dinosaurio
     - Apagón masivo
-    - Tormenta torrencial
+    - Tormenta 
 - Los guardias recapturan dinosaurios escapados.
 - Los técnicos reparan la planta de energía.
 - Se generan archivos CSV con:
@@ -142,6 +168,10 @@ El parque está dividido en distintas áreas:
 
 # 🎨 Patrones de diseño utilizados
 
+<p align="center">
+  <img src="images/Diagrama UML de secuencia.png" width="900">
+</p>
+---
 ## 1. Singleton — ParkConfig
 
 La clase `ParkConfig` implementa el patrón Singleton para garantizar una única instancia de configuración durante toda la ejecución del sistema.
