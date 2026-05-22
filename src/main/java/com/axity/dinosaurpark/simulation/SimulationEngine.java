@@ -65,6 +65,9 @@ public class SimulationEngine {
 
             // A. LLEGADAS
             state.getArrivalZone().processBatch(batchSize);
+            // Registrar ingresos por boletos
+            double ticketPrice = state.getArrivalZone().getTicketPrice();
+            state.addRevenue(ticketPrice * batchSize);
 
             // B. MOVIMIENTO DE TURISTAS
             List<Tourist> activos = state.getTourists().stream()

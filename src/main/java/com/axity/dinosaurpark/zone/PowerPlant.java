@@ -26,6 +26,7 @@ public class PowerPlant implements ParkZone {
 
     public double tick(Random random) {
         energy -= consumptionPerStep;
+        if (energy < 0) energy = 0;
         if (random.nextDouble() < failureProbability) {
             operational = false;
         }
