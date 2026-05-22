@@ -39,8 +39,16 @@ public class SimulationEngine {
         ArrivalZone  arrivalZone  = new ArrivalZone();
         CentralHub   centralHub   = new CentralHub();
         BathroomZone bathroomZone = new BathroomZone();
-        PowerPlant          powerPlant   = new PowerPlant();
+        PowerPlant   powerPlant   = new PowerPlant();
         List<ObservationEnclosure> enclosures = createEnclosures(config);
+
+        // Turistas
+        int totalTourists = config.getInt("tourists", 50);
+        for (int i = 1; i <= totalTourists; i++) {
+            Tourist tourist = new Tourist(i, "Turista " + i);
+            tourists.add(tourist);
+            arrivalZone.addToQueue(tourist);
+        }
 
         // Estado global
         state = new ParkState(tourists, dinosaurs, workers,
