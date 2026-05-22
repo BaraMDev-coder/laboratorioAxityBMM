@@ -1,22 +1,18 @@
 package com.axity.dinosaurpark.event;
 
-import com.axity.dinosaurpark.zone.PowerPlant;
+import com.axity.dinosaurpark.persistence.EventRecord;
+import com.axity.dinosaurpark.simulation.ParkState;
+
+import java.time.LocalDateTime;
+import java.util.Random;
 
 public class BlackoutEvent implements SimulationEvent {
 
-    private final PowerPlant powerPlant;
-    private String description;
-    private double cost;
-
-    public BlackoutEvent(PowerPlant powerPlant) {
-        this.powerPlant = powerPlant;
-        this.description = "";
-        this.cost = 0.0;
-    }
+    private String description = "";
 
     @Override
-    public String getType() {
-        return "BLACKOUT";
+    public String getName() {
+        return "APAGON_MASIVO";
     }
 
     @Override
@@ -24,14 +20,15 @@ public class BlackoutEvent implements SimulationEvent {
         return description;
     }
 
-    public double getCost() {
-        return cost;
+    @Override
+    public void execute(ParkState state, Random rng) {
+        double costo = 2000.0;
+        state.addExpense(costo);
+        description = "Apagón!!! Costo de reparación: $" + costo;
     }
 
     @Override
-    public void execute() {
-        cost = powerPlant.triggerFailure();
-        description = "Costo de la reparación: " + cost;
-        powerPlant.repair();
+    public EventRecord toRecord(long step) {
+        return new EventRecord(step, getName(), description, "planta electrica", LocalDateTime.now());
     }
 }
