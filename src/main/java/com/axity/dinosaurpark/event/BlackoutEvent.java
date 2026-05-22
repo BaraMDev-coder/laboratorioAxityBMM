@@ -2,7 +2,7 @@ package com.axity.dinosaurpark.event;
 
 import com.axity.dinosaurpark.zone.PowerPlant;
 
-public class BlackoutEvent implements ParkEvent {
+public class BlackoutEvent implements SimulationEvent {
 
     private final PowerPlant powerPlant;
     private String description;

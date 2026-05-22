@@ -5,7 +5,7 @@ import com.axity.dinosaurpark.model.TouristStatus;
 
 import java.util.List;
 
-public class StormEvent implements ParkEvent {
+public class StormEvent implements SimulationEvent {
 
     private final List<Tourist> tourists;
     private String description;

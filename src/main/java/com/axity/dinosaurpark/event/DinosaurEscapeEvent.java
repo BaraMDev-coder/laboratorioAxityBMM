@@ -1,14 +1,13 @@
 package com.axity.dinosaurpark.event;
 
 import com.axity.dinosaurpark.model.Dinosaur;
-import com.axity.dinosaurpark.model.DinosaurStatus;
 import com.axity.dinosaurpark.model.Tourist;
 import com.axity.dinosaurpark.model.TouristStatus;
 
 import java.util.List;
 import java.util.Random;
 
-public class DinosaurEscapeEvent implements ParkEvent {
+public class DinosaurEscapeEvent implements SimulationEvent {
 
     private final Dinosaur dinosaur;
     private final List<Tourist> tourists;
